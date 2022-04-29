@@ -6,7 +6,7 @@ export default function LayoutDashboard({ children }) {
   const { pathname } = useLocation();
 
   return (
-    <>
+    <div id="root-dashboard">
       <div id="layout-dashboard">
         <aside>
           <a href="/">
@@ -97,6 +97,6 @@ export default function LayoutDashboard({ children }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

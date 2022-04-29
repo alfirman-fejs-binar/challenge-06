@@ -1,21 +1,4 @@
-button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-a {
-  display: inline-block;
-  text-decoration: none;
-  color: #000;
-  cursor: pointer;
-}
-
-li {
-  list-style: none;
-}
-
-#root {
+#root-dashboard {
   font-family: "Helvetica";
   width: 100vw;
   height: 100vh;
