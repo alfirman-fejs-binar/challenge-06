@@ -3,6 +3,7 @@
   height: 100vh;
   position: relative;
   display: flex;
+  background: #0D28A6;
 }
 
 #root-auth::before {
@@ -10,9 +11,12 @@
   flex-grow: 1;
   background-image: url("/public/image2.jpg");
   background-size: cover;
+  /* mix-blend-mode: screen; */
+  opacity: .55;
 }
 
 #root-auth > form {
+  background: #fff;
   width: 482px;
   height: 100%;
   padding: 0 57px 0 55px;
