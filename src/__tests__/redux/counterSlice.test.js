@@ -2,7 +2,7 @@ import counterReducer, {
   increment,
   decrement,
   incrementByAmount,
-} from '../../redux/slice/counter/counterSlice';
+} from '../../redux/slice/counterSlice';
 
 describe('counter reducer', () => {
   const initialState = {
