@@ -11,15 +11,15 @@ export default function CardDetail({ car }) {
         <ul>
           <li>
             <img src="/icons/fi_users.svg" alt="users" />
-            <p>{car?.passenger}</p>
+            <p>4</p>
           </li>
           <li>
             <img src="/icons/fi_settings.svg" alt="settings" />
-            <p>{car?.engine}</p>
+            <p>Otomatis</p>
           </li>
           <li>
             <img src="/icons/fi_calendar.svg" alt="settings" />
-            <p>{car?.year}</p>
+            <p>2024</p>
           </li>
         </ul>
         <div>

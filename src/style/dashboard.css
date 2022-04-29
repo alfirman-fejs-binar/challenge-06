@@ -1,0 +1,438 @@
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+#root {
+  font-family: "Helvetica";
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+
+#layout-dashboard {
+  display: flex;
+  height: 100vh; 
+}
+
+#layout-dashboard > aside {
+  background: #0d28a6;
+}
+
+#layout-dashboard > aside > a {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#layout-dashboard > aside > a:nth-child(1) {
+  padding: 18px;
+}
+
+#layout-dashboard > aside > a:nth-child(1) > div {
+  width: 34px;
+  height: 34px;
+  background: #cfd4ed;
+  padding: 18px;
+}
+
+/* a:nth-child(2) = dashboard */
+/* a:nth-child(3) = cars */
+
+#layout-dashboard > aside > a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#layout-dashboard > aside > a > span {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+#layout-dashboard > aside > .activeSideNav {
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#layout-dashboard > aside > .activeSideNav > span {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+#layout-dashboard > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#layout-dashboard header {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 0;
+}
+
+#layout-dashboard header > div:nth-child(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#layout-dashboard header > div:nth-child(1) > div {
+  width: 100px;
+  height: 34px;
+  background: #cfd4ed;
+}
+
+#layout-dashboard header > div:nth-child(1) > button {
+  margin-left: 120px;
+}
+
+#layout-dashboard header > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 24px;
+}
+
+#layout-dashboard header > div:nth-child(2) > div:nth-child(1) {
+  position: relative;
+  display: flex;
+  width: 245px;
+}
+
+#layout-dashboard header > div:nth-child(2) > div:nth-child(1) > input {
+  padding: 0 12px 0 38px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+#layout-dashboard header > div:nth-child(2) > div:nth-child(1) > button {
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0d28a6;
+  background: #ffffff;
+  border: 1px solid #0d28a6;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+#layout-dashboard header > div:nth-child(2) > div:nth-child(1) > div {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  left: 12px;
+  top: 0;
+}
+
+#layout-dashboard header > div:nth-child(2) > a:nth-child(2) {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+#layout-dashboard header > div:nth-child(2) > a:nth-child(2) > span {
+  width: 38px;
+  height: 38px;
+  background: #cfd4ed;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #151515;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#layout-dashboard header > div:nth-child(2) > a:nth-child(2) > p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #151515;
+}
+
+#layout-dashboard > div > div {
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+#layout-dashboard > div > div > aside {
+  height: 100%;
+  padding-top: 24px;
+}
+
+#layout-dashboard > div > div > aside > nav {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+#layout-dashboard > div > div > aside > nav > h6 {
+  padding: 11px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #8a8a8a;
+}
+
+#layout-dashboard > div > div > aside > nav > ul > li > a {
+  width: 100%;
+  display: inline-block;
+  padding: 11px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #151515;
+  background: #cfd4ed;
+}
+
+#layout-dashboard main {
+  width: 100%;
+  background: #f4f5f7;
+  padding: 0 25px;
+  overflow: auto;
+}
+
+#layout-dashboard main > div:nth-child(1) {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+#layout-dashboard main > div:nth-child(1) > a {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+#layout-dashboard main > div:nth-child(1) > a:last-child {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 18px;
+  color: #222222;
+}
+
+#layout-dashboard main > div:nth-child(2) {
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#layout-dashboard main > div:nth-child(2) > h4 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* content  */
+
+#dashboard > div:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  margin-bottom: 40px;
+}
+
+#dashboard > div:nth-child(3) > section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+#dashboard > div:nth-child(3) > section > p {
+  padding: 2px 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  border-left: 4px solid #0d28a6;
+}
+
+#layout-dashboard table {
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#layout-dashboard table > thead {
+  background: #cfd4ed;
+}
+
+#layout-dashboard table > thead > tr,
+#layout-dashboard table > tbody > tr {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+#layout-dashboard table > thead > tr > th,
+#layout-dashboard table > tbody > tr > td {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#layout-dashboard table > thead > tr > th > p {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+#layout-dashboard table > thead > tr > th:nth-child(1),
+#layout-dashboard table > tbody > tr > td:nth-child(1) {
+  width: max-content;
+}
+
+#layout-dashboard table > thead > tr > th:nth-child(1) > p,
+#layout-dashboard table > tbody > tr > td:nth-child(1) > p {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#layout-dashboard table > tbody {
+  background-color: white;
+}
+
+#layout-dashboard table > tbody > tr > td > p {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #000000;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(1) {
+  display: flex;
+  align-items: flex-end;
+  /* column-gap: 24px; */
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(1) > div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(1) > button {
+  height: 38px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 0 12px;
+  background: #0d28a6;
+  border-radius: 0px 2px 2px 0px;
+}
+
+#layout-dashboard #dashboard
+  > div:nth-child(3)
+  > section
+  > div
+  > div:nth-child(1)
+  > div:nth-child(1) {
+  margin-right: 24px;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(1) > div > p {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(1) > div > div {
+  /* width: max-content; */
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#layout-dashboard #dashboard
+  > div:nth-child(3)
+  > section
+  > div
+  > div:nth-child(1)
+  > div
+  > div
+  > p {
+  width: 14px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #8a8a8a;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+
+#layout-dashboard #dashboard > div:nth-child(3) > section > div > div:nth-child(2) > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #8a8a8a;
+}

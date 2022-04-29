@@ -6,7 +6,7 @@ import "../../../style/landing.css";
 
 const LayoutLanding = ({ children }) => {
   return (
-    <>
+    <div id="layout-landing">
       <HeaderLanding />
       <main>
         <HeroLanding />
@@ -16,7 +16,7 @@ const LayoutLanding = ({ children }) => {
         </section>
       </main>
       <FooterLanding />
-    </>
+    </div>
   );
 };
 
