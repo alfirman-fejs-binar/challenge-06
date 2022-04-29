@@ -78,3 +78,8 @@ export const defaultCars = [
     updatedAt: "2022-04-21T06:25:46.345Z",
   },
 ];
+
+export const defaultUsers = [
+  { email: "alfirman@gmail.com", password: "111111" },
+  { email: "admin@gmail.com", password: "111111" },
+];
