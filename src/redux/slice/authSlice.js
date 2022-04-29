@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import validateEmail from "../../utils/validateEmail";
 import { defaultUsers } from "./utils";
 
 const initialState = {
@@ -12,14 +13,6 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const { email, password } = action.payload;
-
-      const user = defaultUsers.find((el) => el.email === email);
-
-      if (!user) return alert("email is unregistered");
-
-      if (password !== user.password) return alert("password don't match");
-
       state.isLogin = true;
       state.userData = action.payload;
     },
@@ -33,3 +26,21 @@ export const authSlice = createSlice({
 export const { login, logout } = authSlice.actions;
 
 export default authSlice.reducer;
+
+export const signIn = (data, alert) => (dispatch) => {
+  const { email, password } = data;
+
+  if (!email) return alert("email required");
+
+  if (!password) return alert("password required");
+
+  if (!validateEmail(email)) return alert("invalid email");
+
+  const user = defaultUsers.find((el) => el.email === email);
+
+  if (!user) return alert("email is unregistered");
+
+  if (password !== user.password) return alert("password don't match");
+
+  dispatch(login(data));
+};

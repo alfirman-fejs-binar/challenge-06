@@ -1,26 +1,30 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LayoutAuth } from "../components/layout";
-import { login } from "../redux/slice/authSlice";
+import { signIn } from "../redux/slice/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState({ email: "", password: "" });
+  const [alert, setAlert] = useState("");
 
-  const setValue = (key, value) => setForm({ ...form, [key]: value });
+  const setValue = (key, value) => {
+    setAlert("");
+    setForm({ ...form, [key]: value });
+  };
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(login(form));
+    dispatch(signIn(form, (message) => setAlert(message)));
   };
 
   return (
     <LayoutAuth>
-      <form onSubmit={(e) => submit(e)}>
+      <form data-testid="form" onSubmit={(e) => submit(e)}>
         <div></div>
         <h2>Welcome, Admin BCR</h2>
-        <div className="hidden">
-          <p>message</p>
+        <div className={`${!alert && "hidden"}`}>
+          <p>{alert}</p>
         </div>
         <div>
           <div>
@@ -28,11 +32,10 @@ const Login = () => {
             <input
               id="email"
               name="email"
-              type="email"
+              type="text"
               placeholder="Contoh: johndee@gmail.com"
               value={form.email}
               onChange={(e) => setValue(e.target.name, e.target.value)}
-              required
             />
           </div>
           <div>
@@ -44,7 +47,6 @@ const Login = () => {
               placeholder="6+ karakter"
               value={form.password}
               onChange={(e) => setValue(e.target.name, e.target.value)}
-              required
             />
           </div>
         </div>

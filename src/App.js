@@ -15,7 +15,6 @@ function App() {
     const isUserAuthorize = isLogin && userData.email === "alfirman@gmail.com";
     const isAdminAuthorize = isLogin && userData.email === "admin@gmail.com";
 
-
     if (pathname === "/" && !isUserAuthorize) return replace("/login");
     if (pathname === `/${carId}` && !isUserAuthorize) return replace("/login");
     if (pathname === "/admin" && !isAdminAuthorize) return replace("/login");
