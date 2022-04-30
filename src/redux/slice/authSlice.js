@@ -28,19 +28,19 @@ export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 export const signIn = (data, alert) => (dispatch) => {
-  const { email, password } = data;
+  if (!data.email) return alert("email required");
 
-  if (!email) return alert("email required");
+  if (!data.password) return alert("password required");
 
-  if (!password) return alert("password required");
+  if (!validateEmail(data.email)) return alert("invalid email");
 
-  if (!validateEmail(email)) return alert("invalid email");
-
-  const user = defaultUsers.find((el) => el.email === email);
+  const user = defaultUsers.find((el) => el.email === data.email);
 
   if (!user) return alert("email is unregistered");
 
-  if (password !== user.password) return alert("password don't match");
+  if (data.password !== user.password) return alert("password don't match");
 
-  dispatch(login(data));
+  const { password, ...userData } = user;
+
+  dispatch(login(userData));
 };

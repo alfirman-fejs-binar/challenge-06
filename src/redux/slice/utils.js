@@ -80,6 +80,16 @@ export const defaultCars = [
 ];
 
 export const defaultUsers = [
-  { email: "alfirman@gmail.com", password: "111111" },
-  { email: "admin@gmail.com", password: "111111" },
+  {
+    email: "alfirman@gmail.com",
+    password: "111111",
+    name: "alfirman",
+    role: "user",
+  },
+  {
+    email: "alfirman@admin.com",
+    password: "111111",
+    name: "alfirman",
+    role: "admin",
+  },
 ];

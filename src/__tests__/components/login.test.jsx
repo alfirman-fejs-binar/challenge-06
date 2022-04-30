@@ -2,7 +2,6 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import Login from "../../pages/Login";
 import { store } from "../../redux/store";
-import validateEmail from "../../utils/validateEmail";
 
 const LoginComp = () => (
   <Provider store={store}>
@@ -25,16 +24,6 @@ describe("Login render Page", () => {
   it("renders a submit button", () => {
     const { getByText } = render(<LoginComp />);
     expect(getByText("Sign In")).toBeInTheDocument();
-  });
-});
-
-describe("check function", () => {
-  it("should validate email", () => {
-    expect(validateEmail("admin")).toBeFalsy();
-    expect(validateEmail("admin@")).toBeFalsy();
-    expect(validateEmail("admin@admin")).toBeFalsy();
-    expect(validateEmail("admin@admin.c")).toBeFalsy();
-    expect(validateEmail("admin@admin.com")).toBeTruthy();
   });
 });
 

@@ -11,9 +11,9 @@ function App() {
 
   useEffect(() => {
     const replace = (to) => navigate(to, { replace: true });
-    
-    const isUserAuthorize = isLogin && userData.email === "alfirman@gmail.com";
-    const isAdminAuthorize = isLogin && userData.email === "admin@gmail.com";
+
+    const isUserAuthorize = isLogin && userData.role === "user";
+    const isAdminAuthorize = isLogin && userData.role === "admin";
 
     if (pathname === "/" && !isUserAuthorize) return replace("/login");
     if (pathname === `/${carId}` && !isUserAuthorize) return replace("/login");
