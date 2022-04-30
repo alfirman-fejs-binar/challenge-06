@@ -24,11 +24,9 @@ async function signInWithEmail(email, password) {
   }
 }
 
-beforeEach(() => {
-  fetch.resetMocks();
-});
-
 describe("check auth API", () => {
+  beforeEach(() => fetch.resetMocks());
+
   describe("success", () => {
     it("should be log in", async () => {
       const mockData = {
@@ -49,7 +47,6 @@ describe("check auth API", () => {
 
     describe("failure", () => {
       it("returns null when exception", async () => {
-          
         fetch.mockReject(() => Promise.reject("500 something went wrong"));
 
         const result = await signInWithEmail("admin@admin.com", "admin@admin");

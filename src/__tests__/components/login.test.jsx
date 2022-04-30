@@ -31,58 +31,33 @@ describe("Form behaviour", () => {
   it("validate user inputs, and provides error messages", async () => {
     const { getByTestId, getByText } = render(<LoginComp />);
 
-    const authEvent = async (email, password) => {
-      await act(async () => {
-        fireEvent.change(screen.getByLabelText("Email"), {
-          target: { value: email },
-        });
-
-        fireEvent.change(screen.getByLabelText("Password"), {
-          target: { value: password },
-        });
-      });
-
-      await act(async () => {
-        fireEvent.submit(getByTestId("form"));
-      });
-    };
-
-    await authEvent("admin", "");
-
-    expect(getByText("password required")).toBeInTheDocument();
-
-    await authEvent("", "");
-
-    expect(getByText("email required")).toBeInTheDocument();
-
-    await authEvent("admin@admin", "11111");
-
-    expect(getByText("invalid email")).toBeInTheDocument();
-
-    await authEvent("admin@admin.com", "111111");
-
-    expect(getByText("email is unregistered")).toBeInTheDocument();
-  });
-
-  it("should submit when form inputs contain text", async () => {
-    const { getByTestId, queryByText } = render(<LoginComp />);
-
-    await act(async () => {
+    const authEvent = (email, password) => {
       fireEvent.change(screen.getByLabelText("Email"), {
-        target: { value: "shaquille" },
+        target: { value: email },
       });
 
       fireEvent.change(screen.getByLabelText("Password"), {
-        target: { value: "oatmeal" },
+        target: { value: password },
       });
-    });
 
-    await act(async () => {
       fireEvent.submit(getByTestId("form"));
-    });
+    };
 
-    expect(queryByText("User Name is required")).not.toBeInTheDocument();
-    expect(queryByText("Password is required")).not.toBeInTheDocument();
+    authEvent("admin", "");
+
+    expect(getByText("password required")).toBeInTheDocument();
+
+    authEvent("", "");
+
+    expect(getByText("email required")).toBeInTheDocument();
+
+    authEvent("admin@admin", "11111");
+
+    expect(getByText("invalid email")).toBeInTheDocument();
+
+    authEvent("admin@admin.com", "111111");
+
+    expect(getByText("email is unregistered")).toBeInTheDocument();
   });
 });
 
