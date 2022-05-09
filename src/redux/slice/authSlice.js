@@ -59,7 +59,7 @@ export const signInWithGoole = () => (dispatch) => {
       // ...
       const userData = {
         email: user.email,
-        displayName: user.displayName,
+        name: user.displayName,
       };
       dispatch(login(userData));
     })
