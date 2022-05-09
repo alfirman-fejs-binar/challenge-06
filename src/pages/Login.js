@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LayoutAuth } from "../components/layout";
-import { signIn } from "../redux/slice/authSlice";
+import { signIn, signInWithGoole } from "../redux/slice/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -51,6 +51,9 @@ const Login = () => {
           </div>
         </div>
         <button type="submit">Sign In</button>
+        <button type="button" onClick={() => dispatch(signInWithGoole())}>
+          Sign in with google
+        </button>
       </form>
     </LayoutAuth>
   );

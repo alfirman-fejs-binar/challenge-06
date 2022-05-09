@@ -1,6 +1,8 @@
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { createSlice } from "@reduxjs/toolkit";
 import validateEmail from "../../utils/validateEmail";
 import { defaultUsers } from "./utils";
+import { auth } from "../../firebase";
 
 const initialState = {
   users: defaultUsers,
@@ -43,4 +45,36 @@ export const signIn = (data, alert) => (dispatch) => {
   const { password, ...userData } = user;
 
   dispatch(login(userData));
+};
+
+export const signInWithGoole = () => (dispatch) => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // ...
+      const userData = {
+        email: user.email,
+        displayName: user.displayName,
+      };
+      dispatch(login(userData));
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+      console.log("errorCode", errorCode);
+      console.log("errorMessage", errorMessage);
+      console.log("email", email);
+      console.log("credential", credential);
+    });
 };
