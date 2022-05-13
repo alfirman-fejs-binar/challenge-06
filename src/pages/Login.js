@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LayoutAuth } from "../components/layout";
 import { signIn, signInWithGoole } from "../redux/slice/authSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.auth);
   const [form, setForm] = useState({ email: "", password: "" });
   const [alert, setAlert] = useState("");
 
@@ -15,12 +16,12 @@ const Login = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(signIn(form, (message) => setAlert(message)));
+    dispatch(signIn(users, form, (message) => setAlert(message)));
   };
 
   return (
     <LayoutAuth>
-      <form data-testid="form" onSubmit={(e) => submit(e)}>
+      <form data-testid="login-form" onSubmit={(e) => submit(e)}>
         <div></div>
         <h2>Welcome, Admin BCR</h2>
         <div className={`${!alert && "hidden"}`}>

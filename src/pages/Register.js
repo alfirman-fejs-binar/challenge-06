@@ -1,13 +1,36 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { LayoutAuth } from "../components/layout";
+import { signUp } from "../redux/slice/authSlice";
 
 const Register = () => {
+  const push = useNavigate();
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.auth);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const setValue = (key, value) => {
+    setAlertMessage("");
+    setForm({ ...form, [key]: value });
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(signUp(users, form, (message) => setAlertMessage(message), () => {
+      alert("success register, please login !")
+      push("/login")
+    }));
+  };
+
   return (
     <LayoutAuth>
-      <form onSubmit={(e) => e.preventDefault(e)}>
+      <form data-testId="register-form" onSubmit={(e) => submit(e)}>
         <div></div>
-        <h2>Welcome, Admin BCR</h2>
-        <div className="hidden">
-          <p>message</p>
+        <h2>Create new Account</h2>
+        <div className={`${!alertMessage && "hidden"}`}>
+          <p>{alertMessage}</p>
         </div>
         <div>
           <div>
@@ -18,6 +41,8 @@ const Register = () => {
               type="text"
               placeholder="Contoh: johndee@gmail.com"
               required
+              value={form.email}
+              onChange={(e) => setValue(e.target.name, e.target.value)}
             />
           </div>
           <div>
@@ -28,10 +53,18 @@ const Register = () => {
               type="password"
               placeholder="6+ karakter"
               required
+              value={form.password}
+              onChange={(e) => setValue(e.target.name, e.target.value)}
             />
           </div>
         </div>
         <button type="submit">Sign Up</button>
+        <small>
+          Already have account?{" "}
+          <Link to="/login">
+            <b>Login</b>
+          </Link>
+        </small>
       </form>
     </LayoutAuth>
   );

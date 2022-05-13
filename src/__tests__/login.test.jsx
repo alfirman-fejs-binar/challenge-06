@@ -21,19 +21,23 @@ const LoginComp = () => (
 );
 
 describe("Login render Page", () => {
+  beforeEach(() => {
+    render(<LoginComp />);
+  });
+
   it("renders the Login page", () => {
-    const { getByText } = render(<LoginComp />);
+    const { getByText } = screen;
     expect(getByText("Welcome, Admin BCR")).toBeInTheDocument();
   });
 
   it("render 2 input components", () => {
-    const { getByLabelText } = render(<LoginComp />);
+    const { getByLabelText } = screen;
     expect(getByLabelText("Email")).toBeInTheDocument();
     expect(getByLabelText("Password")).toBeInTheDocument();
   });
 
   it("renders a submit button", () => {
-    const { getByText } = render(<LoginComp />);
+    const { getByText } = screen;
     expect(getByText("Sign In")).toBeInTheDocument();
   });
 });
@@ -51,7 +55,7 @@ describe("Form behaviour", () => {
         target: { value: password },
       });
 
-      fireEvent.submit(getByTestId("form"));
+      fireEvent.submit(getByTestId("login-form"));
     };
 
     authEvent("admin", "");
@@ -65,53 +69,69 @@ describe("Form behaviour", () => {
     authEvent("admin@admin", "11111");
 
     expect(getByText("invalid email")).toBeInTheDocument();
-
   });
 });
 
-describe("check auth API", () => {
-  async function signInWithEmail(email, password) {
-    const raw = JSON.stringify({ email, password });
-    try {
-      const result = await fetch(
-        "https://rent-cars-api.herokuapp.com/auth/login",
-        { method: "POST", body: raw }
-      );
-      const data = await result.json();
-      return data;
-    } catch (e) {
-      return e;
-    }
-  }
+// describe("check auth API", () => {
+//   async function signInWithEmail(email, password) {
+//     const raw = JSON.stringify({ email, password });
+//     try {
+//       const result = await fetch(
+//         "https://rent-cars-api.herokuapp.com/auth/login",
+//         { method: "POST", body: raw }
+//       );
+//       const data = await result.json();
+//       return data;
+//     } catch (e) {
+//       return e;
+//     }
+//   }
 
-  beforeEach(() => fetch.resetMocks());
+//   beforeEach(() => fetch.resetMocks());
 
-  describe("success", () => {
-    it("should be log in", async () => {
-      const mockData = {
-        name: "alfirman",
-        email: "alfirman@admin.com",
-        role: "admin",
-      };
-      const mockResponse = JSON.stringify(mockData);
+//   describe("success", () => {
+//     it("should be log in", async () => {
+//       const mockData = {
+//         name: "alfirman",
+//         email: "alfirman@admin.com",
+//         role: "admin",
+//       };
+//       const mockResponse = JSON.stringify(mockData);
 
-      fetch.mockResponseOnce(mockResponse);
+//       fetch.mockResponseOnce(mockResponse);
 
-      const result = await signInWithEmail("admin@admin.com", "admin@admin");
+//       const result = await signInWithEmail("admin@admin.com", "admin@admin");
 
-      expect(result).toEqual(mockData);
+//       expect(result).toEqual(mockData);
 
-      expect(fetch).toHaveBeenCalledTimes(1);
-    });
+//       expect(fetch).toHaveBeenCalledTimes(1);
+//     });
+//   });
 
-    describe("failure", () => {
-      it("returns null when exception", async () => {
-        fetch.mockReject(() => Promise.reject("500 something went wrong"));
+//   describe("failure", () => {
+//     it("returns null when exception", async () => {
+//       fetch.mockReject(() => Promise.reject("500 something went wrong"));
 
-        const result = await signInWithEmail("admin@admin.com", "admin@admin");
+//       const result = await signInWithEmail("admin@admin.com", "admin@admin");
 
-        expect(result).toEqual("500 something went wrong");
-      });
-    });
-  });
-});
+//       expect(result).toEqual("500 something went wrong");
+//     });
+//   });
+// });
+
+// describe("test api", () => {
+//   it("should have response", async () => {
+//     const request = {
+//       email: "admin@mail.com",
+//       password: "123456",
+//     };
+
+//     const response = await fetch(
+//       "https://rent-cars-api.herokuapp.com/admin/auth/login",
+//       { method: "POST", body: JSON.stringify(request) }
+//     );
+//     // const result = await response.json();
+//     console.log("response", response);
+//     // console.log("result", result);
+//   });
+// });

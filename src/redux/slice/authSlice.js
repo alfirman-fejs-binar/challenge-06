@@ -14,6 +14,9 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    register: (state, action) => {
+      state.users.push(action.payload);
+    },
     login: (state, action) => {
       state.isLogin = true;
       state.userData = action.payload;
@@ -25,18 +28,36 @@ export const authSlice = createSlice({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { register, login, logout } = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const signIn = (data, alert) => (dispatch) => {
+export const signUp = (users, data, alert, cb) => (dispatch) => {
+  const { email, password } = data;
+
+  if (!email) return alert("email required");
+
+  if (!password) return alert("password required");
+
+  if (!validateEmail(email)) return alert("invalid email");
+
+  const user = users.find((el) => el.email === data.email);
+
+  if (user) return alert("email is already used");
+
+  dispatch(register(data));
+
+  cb()
+};
+
+export const signIn = (users, data, alert) => (dispatch) => {
   if (!data.email) return alert("email required");
 
   if (!data.password) return alert("password required");
 
   if (!validateEmail(data.email)) return alert("invalid email");
 
-  const user = defaultUsers.find((el) => el.email === data.email);
+  const user = users.find((el) => el.email === data.email);
 
   if (!user) return alert("email is unregistered");
 

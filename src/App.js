@@ -13,7 +13,7 @@ function App() {
     const replace = (to) => navigate(to, { replace: true });
 
     const isAdminAuthorize = isLogin && userData.email === "admin@admin.com";
-    const isUserAuthorize = isLogin;
+    const isUserAuthorize = isLogin && !isAdminAuthorize;
 
     if (pathname === "/" && !isUserAuthorize) return replace("/login");
     if (pathname === `/${carId}` && !isUserAuthorize) return replace("/login");
